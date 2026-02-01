@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loker Kita - Temukan Karier Impianmu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+
+    <header class="fixed top-0 w-full bg-white/80 backdrop-blur-md border-b border-slate-200 z-50">
+        <nav class="container mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <div class="bg-blue-600 p-1.5 rounded-lg">
+                    <i data-lucide="briefcase" class="text-white w-6 h-6"></i>
+                </div>
+                <span class="text-2xl font-bold text-blue-600 tracking-tight">Loker Kita</span>
+            </div>
+            
+            <ul class="hidden md:flex items-center gap-8 font-medium text-slate-600">
+                <li><a href="#" class="hover:text-blue-600 transition">Cari Kerja</a></li>
+                <li><a href="#" class="hover:text-blue-600 transition">Perusahaan</a></li>
+                <li><a href="#" class="hover:text-blue-600 transition">Tips Karier</a></li>
+            </ul>
+
+            <div class="flex items-center gap-4">
+                <button class="text-slate-600 font-medium hover:text-blue-600">Masuk</button>
+                <button class="bg-blue-600 text-white px-5 py-2.5 rounded-full font-semibold hover:bg-blue-700 transition shadow-lg shadow-blue-200">Daftar</button>
+            </div>
+        </nav>
+    </header>
+
+    <section class="pt-32 pb-20 bg-gradient-to-b from-blue-50 to-white px-6">
+        <div class="container mx-auto text-center max-w-4xl">
+            <h1 class="text-4xl md:text-6xl font-extrabold text-slate-900 leading-tight mb-6">
+                Cari Kerja Jadi Lebih <span class="text-blue-600">Mudah</span> di Loker Kita
+            </h1>
+            <p class="text-lg text-slate-600 mb-10">Menghubungkan talenta hebat dengan peluang terbaik di seluruh Indonesia. Temukan pekerjaan impianmu hari ini!</p>
+            
+            <div class="bg-white p-2 rounded-2xl shadow-xl flex flex-col md:flex-row gap-2 border border-slate-100">
+                <div class="flex-1 flex items-center px-4 py-3 border-b md:border-b-0 md:border-r border-slate-100">
+                    <i data-lucide="search" class="text-slate-400 w-5 h-5 mr-3"></i>
+                    <input type="text" placeholder="Jabatan atau Kata Kunci" class="w-full outline-none text-slate-700">
+                </div>
+                <div class="flex-1 flex items-center px-4 py-3">
+                    <i data-lucide="map-pin" class="text-slate-400 w-5 h-5 mr-3"></i>
+                    <input type="text" placeholder="Lokasi (Kota atau Provinsi)" class="w-full outline-none text-slate-700">
+                </div>
+                <button class="bg-blue-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-blue-700 transition">Cari Peluang</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-10 border-y border-slate-100 bg-white px-6">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+            <div>
+                <p class="text-3xl font-bold text-blue-600">10.000+</p>
+                <p class="text-slate-500 font-medium uppercase text-sm tracking-wider">Lowongan Aktif</p>
+            </div>
+            <div>
+                <p class="text-3xl font-bold text-blue-600">5.000+</p>
+                <p class="text-slate-500 font-medium uppercase text-sm tracking-wider">Perusahaan Terverifikasi</p>
+            </div>
+            <div>
+                <p class="text-3xl font-bold text-blue-600">500+</p>
+                <p class="text-slate-500 font-medium uppercase text-sm tracking-wider">Lowongan Baru Hari Ini</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-6 container mx-auto">
+        <h2 class="text-3xl font-bold text-slate-900 mb-10">Kategori Populer</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div class="bg-white p-8 rounded-2xl border border-slate-200 hover:border-blue-500 hover:shadow-xl hover:-translate-y-1 transition group">
+                <div class="bg-blue-50 w-12 h-12 rounded-lg flex items-center justify-center text-blue-600 mb-4 group-hover:bg-blue-600 group-hover:text-white transition">
+                    <i data-lucide="code"></i>
+                </div>
+                <h3 class="font-bold text-lg mb-1">Teknologi</h3>
+                <p class="text-slate-500 text-sm">1.200+ Lowongan</p>
+            </div>
+            <div class="bg-white p-8 rounded-2xl border border-slate-200 hover:border-blue-500 hover:shadow-xl hover:-translate-y-1 transition group">
+                <div class="bg-blue-50 w-12 h-12 rounded-lg flex items-center justify-center text-blue-600 mb-4 group-hover:bg-blue-600 group-hover:text-white transition">
+                    <i data-lucide="palette"></i>
+                </div>
+                <h3 class="font-bold text-lg mb-1">Kreatif</h3>
+                <p class="text-slate-500 text-sm">850+ Lowongan</p>
+            </div>
+            <div class="bg-white p-8 rounded-2xl border border-slate-200 hover:border-blue-500 hover:shadow-xl hover:-translate-y-1 transition group">
+                <div class="bg-blue-50 w-12 h-12 rounded-lg flex items-center justify-center text-blue-600 mb-4 group-hover:bg-blue-600 group-hover:text-white transition">
+                    <i data-lucide="trending-up"></i>
+                </div>
+                <h3 class="font-bold text-lg mb-1">Pemasaran</h3>
+                <p class="text-slate-500 text-sm">900+ Lowongan</p>
+            </div>
+            <div class="bg-white p-8 rounded-2xl border border-slate-200 hover:border-blue-500 hover:shadow-xl hover:-translate-y-1 transition group">
+                <div class="bg-blue-50 w-12 h-12 rounded-lg flex items-center justify-center text-blue-600 mb-4 group-hover:bg-blue-600 group-hover:text-white transition">
+                    <i data-lucide="file-text"></i>
+                </div>
+                <h3 class="font-bold text-lg mb-1">Admin</h3>
+                <p class="text-slate-500 text-sm">540+ Lowongan</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-slate-100 px-6">
+        <div class="container mx-auto">
+            <div class="flex justify-between items-end mb-10">
+                <h2 class="text-3xl font-bold text-slate-900">Lowongan Terbaru</h2>
+                <a href="#" class="text-blue-600 font-semibold hover:underline">Lihat Semua</a>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-2xl shadow-sm flex items-start gap-4 hover:shadow-md transition">
+                    <div class="w-16 h-16 bg-slate-200 rounded-xl flex-shrink-0"></div>
+                    <div class="flex-1">
+                        <h3 class="text-xl font-bold text-slate-900 hover:text-blue-600 cursor-pointer">Frontend Developer</h3>
+                        <p class="text-blue-600 font-medium">PT Teknologi Nusantara</p>
+                        <div class="flex items-center gap-4 mt-4 text-slate-500 text-sm font-medium">
+                            <span class="flex items-center gap-1"><i data-lucide="map-pin" class="w-4 h-4"></i> Jakarta</span>
+                            <span class="flex items-center gap-1"><i data-lucide="dollar-sign" class="w-4 h-4"></i> 8 - 12 Juta</span>
+                        </div>
+                    </div>
+                    <button class="bg-blue-50 text-blue-600 p-2 rounded-lg hover:bg-blue-600 hover:text-white transition">
+                        <i data-lucide="bookmark" class="w-5 h-5"></i>
+                    </button>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm flex items-start gap-4 hover:shadow-md transition">
+                    <div class="w-16 h-16 bg-slate-200 rounded-xl flex-shrink-0"></div>
+                    <div class="flex-1">
+                        <h3 class="text-xl font-bold text-slate-900 hover:text-blue-600 cursor-pointer">Social Media Manager</h3>
+                        <p class="text-blue-600 font-medium">Creative Studio</p>
+                        <div class="flex items-center gap-4 mt-4 text-slate-500 text-sm font-medium">
+                            <span class="flex items-center gap-1"><i data-lucide="map-pin" class="w-4 h-4"></i> Bandung</span>
+                            <span class="flex items-center gap-1"><i data-lucide="dollar-sign" class="w-4 h-4"></i> 5 - 7 Juta</span>
+                        </div>
+                    </div>
+                    <button class="bg-blue-50 text-blue-600 p-2 rounded-lg hover:bg-blue-600 hover:text-white transition">
+                        <i data-lucide="bookmark" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-6">
+        <div class="container mx-auto bg-blue-600 rounded-[2.5rem] p-12 text-center text-white relative overflow-hidden shadow-2xl">
+            <div class="relative z-10">
+                <h2 class="text-3xl md:text-4xl font-extrabold mb-4">Butuh Talenta Terbaik untuk Tim Anda?</h2>
+                <p class="text-blue-100 text-lg mb-8 max-w-2xl mx-auto">Pasang lowongan Anda di Loker Kita dan jangkau ribuan kandidat berkualitas setiap harinya.</p>
+                <button class="bg-white text-blue-600 px-10 py-4 rounded-xl font-bold text-lg hover:bg-slate-100 transition shadow-lg">Pasang Lowongan Sekarang</button>
+            </div>
+            <div class="absolute -top-24 -right-24 w-64 h-64 bg-blue-500 rounded-full opacity-50"></div>
+            <div class="absolute -bottom-24 -left-24 w-64 h-64 bg-blue-700 rounded-full opacity-50"></div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-900 text-slate-400 py-16 px-6">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
+            <div>
+                <div class="flex items-center gap-2 mb-6">
+                    <div class="bg-blue-600 p-1 rounded">
+                        <i data-lucide="briefcase" class="text-white w-5 h-5"></i>
+                    </div>
+                    <span class="text-2xl font-bold text-white">Loker Kita</span>
+                </div>
+                <p class="text-sm leading-relaxed text-slate-500">
+                    Platform pencarian kerja terpercaya di Indonesia. Membantu talenta menemukan karier terbaiknya.
+                </p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-6 uppercase text-xs tracking-widest">Pencari Kerja</h4>
+                <ul class="space-y-4 text-sm">
+                    <li><a href="#" class="hover:text-blue-400">Jelajahi Pekerjaan</a></li>
+                    <li><a href="#" class="hover:text-blue-400">Daftar Akun</a></li>
+                    <li><a href="#" class="hover:text-blue-400">Tips Karier</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-6 uppercase text-xs tracking-widest">Perusahaan</h4>
+                <ul class="space-y-4 text-sm">
+                    <li><a href="#" class="hover:text-blue-400">Pasang Lowongan</a></li>
+                    <li><a href="#" class="hover:text-blue-400">Paket Rekrutmen</a></li>
+                    <li><a href="#" class="hover:text-blue-400">Bantuan Bisnis</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-6 uppercase text-xs tracking-widest">Hubungi Kami</h4>
+                <div class="flex gap-4 mb-6">
+                    <a href="#" class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-blue-600 transition"><i data-lucide="instagram" class="w-5 h-5 text-white"></i></a>
+                    <a href="#" class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-blue-600 transition"><i data-lucide="twitter" class="w-5 h-5 text-white"></i></a>
+                    <a href="#" class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-blue-600 transition"><i data-lucide="linkedin" class="w-5 h-5 text-white"></i></a>
+                </div>
+                <p class="text-xs text-slate-600">&copy; 2026 Loker Kita. Hak Cipta Dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Inisialisasi Ikon Lucide
+        lucide.createIcons();
+    </script>
+</body>
+</html>
