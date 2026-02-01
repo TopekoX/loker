@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Loker Kita - Bergabunglah Sekarang</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 min-h-screen flex flex-col">
+
+    <nav class="p-6">
+        <div class="container mx-auto">
+            <a th:href="@{/}" class="flex items-center gap-2 w-fit">
+                <div class="bg-blue-600 p-1.5 rounded-lg">
+                    <i data-lucide="briefcase" class="text-white w-6 h-6"></i>
+                </div>
+                <span class="text-2xl font-bold text-blue-600 tracking-tight">Loker Kita</span>
+            </a>
+        </div>
+    </nav>
+
+    <main class="flex-grow flex items-center justify-center px-6 py-12">
+        <div class="bg-white w-full max-w-lg rounded-[2rem] shadow-xl shadow-blue-100/50 border border-slate-100 overflow-hidden">
+            <div class="p-8 md:p-12">
+                <div class="mb-10 text-center">
+                    <h1 class="text-3xl font-extrabold text-slate-900 mb-2">Buat Akun Baru</h1>
+                    <p class="text-slate-500">Mulai langkah karier atau temukan talenta terbaikmu.</p>
+                </div>
+
+                <form action="#" class="space-y-6">
+                    
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-3">Saya mendaftar sebagai:</label>
+                        <div class="grid grid-cols-2 gap-4">
+                            <label class="relative flex flex-col p-4 bg-white border border-slate-200 rounded-xl cursor-pointer hover:border-blue-500 hover:bg-blue-50 transition group">
+                                <input type="radio" name="user_type" value="seeker" class="absolute opacity-0" checked>
+                                <div class="flex flex-col items-center text-center gap-2">
+                                    <div class="p-2 rounded-full bg-slate-100 text-slate-500 group-hover:bg-blue-600 group-hover:text-white transition">
+                                        <i data-lucide="user" class="w-5 h-5"></i>
+                                    </div>
+                                    <span class="font-semibold text-slate-700 group-hover:text-blue-700">Pencari Kerja</span>
+                                </div>
+                            </label>
+                            
+                            <label class="relative flex flex-col p-4 bg-white border border-slate-200 rounded-xl cursor-pointer hover:border-blue-500 hover:bg-blue-50 transition group">
+                                <input type="radio" name="user_type" value="employer" class="absolute opacity-0">
+                                <div class="flex flex-col items-center text-center gap-2">
+                                    <div class="p-2 rounded-full bg-slate-100 text-slate-500 group-hover:bg-blue-600 group-hover:text-white transition">
+                                        <i data-lucide="building-2" class="w-5 h-5"></i>
+                                    </div>
+                                    <span class="font-semibold text-slate-700 group-hover:text-blue-700">Perusahaan</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="email" class="block text-sm font-bold text-slate-700 mb-2">Alamat Email</label>
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-slate-400">
+                                <i data-lucide="mail" class="w-5 h-5"></i>
+                            </span>
+                            <input type="email" id="email" name="email" placeholder="contoh@email.com" 
+                                class="block w-full pl-11 pr-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition outline-none" required>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="password" class="block text-sm font-bold text-slate-700 mb-2">Kata Sandi</label>
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-slate-400">
+                                <i data-lucide="lock" class="w-5 h-5"></i>
+                            </span>
+                            <input type="password" id="password" name="password" placeholder="Minimal 8 karakter" 
+                                class="block w-full pl-11 pr-12 py-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition outline-none" required>
+                            <button type="button" class="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-400 hover:text-blue-600">
+                                <i data-lucide="eye" class="w-5 h-5"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="w-full bg-blue-600 text-white py-4 rounded-xl font-bold text-lg hover:bg-blue-700 transition shadow-lg shadow-blue-200 mt-4">
+                        Daftar Sekarang
+                    </button>
+
+                    <p class="text-center text-slate-500 text-sm">
+                        Sudah punya akun? <a th:href="@{/login}" class="text-blue-600 font-bold hover:underline">Masuk di sini</a>
+                    </p>
+                </form>
+            </div>
+            
+            <div class="bg-slate-50 p-6 text-center border-t border-slate-100">
+                <p class="text-xs text-slate-400 leading-relaxed px-4">
+                    Dengan mendaftar, Anda menyetujui <a href="#" class="underline">Syarat & Ketentuan</a> serta <a href="#" class="underline">Kebijakan Privasi</a> Loker Kita.
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="py-6 text-center text-slate-400 text-xs">
+        &copy; 2026 Loker Kita. Jembatan Karier Masa Depanmu.
+    </footer>
+
+    <script>
+        // Inisialisasi Ikon Lucide
+        lucide.createIcons();
+
+        // Script sederhana untuk styling Radio Cards saat dipilih
+        const radioButtons = document.querySelectorAll('input[name="user_type"]');
+        radioButtons.forEach(radio => {
+            radio.addEventListener('change', () => {
+                document.querySelectorAll('input[name="user_type"]').forEach(r => {
+                    r.parentElement.classList.remove('border-blue-500', 'bg-blue-50', 'ring-2', 'ring-blue-500/20');
+                });
+                if (radio.checked) {
+                    radio.parentElement.classList.add('border-blue-500', 'bg-blue-50', 'ring-2', 'ring-blue-500/20');
+                }
+            });
+        });
+        
+        // Memastikan state awal benar
+        document.querySelector('input[name="user_type"]:checked').parentElement.classList.add('border-blue-500', 'bg-blue-50', 'ring-2', 'ring-blue-500/20');
+    </script>
+</body>
+</html>

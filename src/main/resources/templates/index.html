@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,8 +29,8 @@
             </ul>
 
             <div class="flex items-center gap-4">
-                <button class="text-slate-600 font-medium hover:text-blue-600">Masuk</button>
-                <button class="bg-blue-600 text-white px-5 py-2.5 rounded-full font-semibold hover:bg-blue-700 transition shadow-lg shadow-blue-200">Daftar</button>
+                <a th:href="@{/login}"><button class="text-slate-600 font-medium hover:text-blue-600">Masuk</button></a>
+                <a th:href="@{/register}"><button class="bg-blue-600 text-white px-5 py-2.5 rounded-full font-semibold hover:bg-blue-700 transition shadow-lg shadow-blue-200">Daftar</button></a>
             </div>
         </nav>
     </header>
