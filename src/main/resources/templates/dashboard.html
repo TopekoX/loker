@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Loker Kita</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 min-h-screen flex">
+
+    <aside class="w-64 bg-white border-r border-slate-200 hidden md:flex flex-col sticky top-0 h-screen">
+        <div class="p-6">
+            <a th:href="@{/dashboard}" class="flex items-center gap-2">
+                <div class="bg-blue-600 p-1.5 rounded-lg">
+                    <i data-lucide="briefcase" class="text-white w-5 h-5"></i>
+                </div>
+                <span class="text-xl font-bold text-blue-600 tracking-tight">Loker Kita</span>
+            </a>
+        </div>
+
+        <nav class="flex-grow px-4 space-y-1">
+            <a href="#" class="flex items-center gap-3 px-4 py-3 bg-blue-50 text-blue-600 rounded-xl font-semibold transition">
+                <i data-lucide="layout-grid" class="w-5 h-5"></i> Dashboard
+            </a>
+            <a href="#" class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-50 hover:text-blue-600 rounded-xl transition">
+                <i data-lucide="search" class="w-5 h-5"></i> Cari Lowongan
+            </a>
+            <a href="#" class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-50 hover:text-blue-600 rounded-xl transition">
+                <i data-lucide="send" class="w-5 h-5"></i> Lamaran Saya
+            </a>
+            <a href="#" class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-50 hover:text-blue-600 rounded-xl transition">
+                <i data-lucide="bookmark" class="w-5 h-5"></i> Tersimpan
+            </a>
+            <div class="pt-4 pb-2 px-4 text-xs font-bold text-slate-400 uppercase tracking-widest">Akun</div>
+            <a href="#" class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-50 hover:text-blue-600 rounded-xl transition">
+                <i data-lucide="user" class="w-5 h-5"></i> Profil Saya
+            </a>
+            <a href="#" class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-50 hover:text-blue-600 rounded-xl transition">
+                <i data-lucide="settings" class="w-5 h-5"></i> Pengaturan
+            </a>
+        </nav>
+
+        <div class="p-4 border-t border-slate-100">
+            <a href="index.html" class="flex items-center gap-3 px-4 py-3 text-red-500 hover:bg-red-50 rounded-xl transition font-medium">
+                <i data-lucide="log-out" class="w-5 h-5"></i> Keluar
+            </a>
+        </div>
+    </aside>
+
+    <div class="flex-1 flex flex-col">
+        
+        <header class="bg-white border-b border-slate-200 px-8 py-4 flex items-center justify-between sticky top-0 z-30">
+            <h1 class="text-xl font-bold text-slate-800">Dashboard</h1>
+            <div class="flex items-center gap-4">
+                <button class="relative p-2 text-slate-400 hover:text-blue-600 transition">
+                    <i data-lucide="bell" class="w-6 h-6"></i>
+                    <span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>
+                </button>
+                <div class="flex items-center gap-3 pl-4 border-l border-slate-200">
+                    <div class="text-right hidden sm:block">
+                        <p class="text-sm font-bold text-slate-800">Budi Santoso</p>
+                        <p class="text-xs text-slate-500">UI/UX Designer</p>
+                    </div>
+                    <div class="w-10 h-10 bg-blue-100 rounded-full border border-blue-200 flex items-center justify-center text-blue-600 font-bold">
+                        BS
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="p-8 space-y-8">
+            
+            <section>
+                <h2 class="text-2xl font-extrabold text-slate-900">Halo, Budi! 👋</h2>
+                <p class="text-slate-500">Berikut adalah ringkasan aktivitas kariermu minggu ini.</p>
+            </section>
+
+            <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex items-center gap-5">
+                    <div class="bg-blue-100 p-3 rounded-xl text-blue-600">
+                        <i data-lucide="briefcase" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <p class="text-2xl font-bold">12</p>
+                        <p class="text-sm text-slate-500">Lamaran Dikirim</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex items-center gap-5">
+                    <div class="bg-amber-100 p-3 rounded-xl text-amber-600">
+                        <i data-lucide="clock" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <p class="text-2xl font-bold">4</p>
+                        <p class="text-sm text-slate-500">Menunggu Respon</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex items-center gap-5">
+                    <div class="bg-green-100 p-3 rounded-xl text-green-600">
+                        <i data-lucide="message-square" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <p class="text-2xl font-bold">2</p>
+                        <p class="text-sm text-slate-500">Undangan Interview</p>
+                    </div>
+                </div>
+            </section>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2 space-y-4">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-lg font-bold">Status Lamaran Terbaru</h3>
+                        <a href="#" class="text-blue-600 text-sm font-semibold hover:underline">Lihat Semua</a>
+                    </div>
+                    <div class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
+                        <table class="w-full text-left">
+                            <thead class="bg-slate-50 border-b border-slate-100">
+                                <tr>
+                                    <th class="px-6 py-4 text-xs font-bold text-slate-400 uppercase">Perusahaan</th>
+                                    <th class="px-6 py-4 text-xs font-bold text-slate-400 uppercase">Status</th>
+                                    <th class="px-6 py-4 text-xs font-bold text-slate-400 uppercase">Tanggal</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100 text-sm">
+                                <tr>
+                                    <td class="px-6 py-4 font-semibold text-slate-700">PT Maju Digital <br><span class="font-normal text-slate-400 text-xs text-xs">Product Designer</span></td>
+                                    <td class="px-6 py-4"><span class="bg-amber-100 text-amber-600 px-3 py-1 rounded-full text-xs font-bold">Ditinjau</span></td>
+                                    <td class="px-6 py-4 text-slate-500">2 Feb 2026</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 font-semibold text-slate-700">GoTech Solutions <br><span class="font-normal text-slate-400 text-xs">UI Developer</span></td>
+                                    <td class="px-6 py-4"><span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-xs font-bold">Psikotes</span></td>
+                                    <td class="px-6 py-4 text-slate-500">1 Feb 2026</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 font-semibold text-slate-700">Unicorn StartUp <br><span class="font-normal text-slate-400 text-xs">Senior UI Designer</span></td>
+                                    <td class="px-6 py-4"><span class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-xs font-bold">Interview</span></td>
+                                    <td class="px-6 py-4 text-slate-500">30 Jan 2026</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <h3 class="text-lg font-bold">Rekomendasi Untukmu</h3>
+                    <div class="space-y-4">
+                        <div class="bg-white p-4 rounded-xl border border-slate-100 shadow-sm hover:border-blue-300 transition group">
+                            <h4 class="font-bold text-slate-800 group-hover:text-blue-600">Visual Designer</h4>
+                            <p class="text-sm text-slate-500 mb-3">Creative Agency • Jakarta</p>
+                            <button class="w-full py-2 bg-blue-50 text-blue-600 rounded-lg text-sm font-bold hover:bg-blue-600 hover:text-white transition">Lamar Sekarang</button>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border border-slate-100 shadow-sm hover:border-blue-300 transition group">
+                            <h4 class="font-bold text-slate-800 group-hover:text-blue-600">UX Researcher</h4>
+                            <p class="text-sm text-slate-500 mb-3">E-Commerce Indo • Remote</p>
+                            <button class="w-full py-2 bg-blue-50 text-blue-600 rounded-lg text-sm font-bold hover:bg-blue-600 hover:text-white transition">Lamar Sekarang</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

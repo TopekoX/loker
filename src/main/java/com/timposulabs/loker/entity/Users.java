@@ -2,6 +2,8 @@ package com.timposulabs.loker.entity;
 
 import java.util.Date;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.CascadeType;
@@ -28,14 +30,22 @@ public class Users {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false, unique = true, name = "email")
     private String email;
     
-    @Column(nullable = false)
+    @Column(nullable = false, name = "password")
     private String password;
 
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @CreationTimestamp
+    @Column(updatable = false, name = "registration_date")
     private Date registrationDate;
+
+    @Column(name = "update_date")
+    @UpdateTimestamp
+    private Date updateDate;
+
+    @Column(nullable = false, name = "is_active")
+    private boolean isActive = true;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.DETACH})
     @JoinColumn(name = "usersTypeId", referencedColumnName = "id")

@@ -1,0 +1,14 @@
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: mysql-db
+    environment:
+      MYSQL_ROOT_PASSWORD: rahasia
+    volumes:
+      - mysql-data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+  
+volumes:
+  mysql-data:
+    driver: local
