@@ -34,28 +34,29 @@
 
                 <form th:action="@{/register/new}" th:object="${user}" method="post" class="space-y-6">
                     
-                    <div>
-                        <label class="block text-sm font-bold text-slate-700 mb-3">Saya mendaftar sebagai:</label>
-                        <div class="grid grid-cols-2 gap-4">
-                            <label class="relative flex flex-col p-4 bg-white border border-slate-200 rounded-xl cursor-pointer hover:border-blue-500 hover:bg-blue-50 transition group">
-                                <input type="radio" name="user_type" value="seeker" class="absolute opacity-0" checked>
-                                <div class="flex flex-col items-center text-center gap-2">
-                                    <div class="p-2 rounded-full bg-slate-100 text-slate-500 group-hover:bg-blue-600 group-hover:text-white transition">
-                                        <i data-lucide="user" class="w-5 h-5"></i>
+                    <div class="mb-4">
+                        <label class="block text-sm font-bold text-slate-700 mb-4 text-center">Saya mendaftar sebagai:</label>
+                        
+                        <div class="flex flex-wrap justify-center gap-4">
+                            <label th:each="type : ${usersTypes}" class="relative flex flex-col items-center justify-center p-5 bg-white border border-slate-200 rounded-2xl cursor-pointer hover:border-blue-500 hover:bg-blue-50 transition-all duration-300 group w-40 h-36">
+                                
+                                <input type="radio" th:field="*{usersType.id}" th:value="${type.id}" class="absolute opacity-0 cursor-pointer">
+                                
+                                <div class="flex flex-col items-center text-center gap-3">
+                                    <div class="p-3 rounded-full bg-slate-100 text-slate-400 group-has-[:checked]:bg-blue-600 group-has-[:checked]:text-white transition-all duration-300">
+                                        <i th:data-lucide="${type.typeName.contains('Pelamar') ? 'user' : 'building-2'}" class="w-6 h-6"></i>
                                     </div>
-                                    <span class="font-semibold text-slate-700 group-hover:text-blue-700">Pencari Kerja</span>
+                                    
+                                    <span class="font-bold text-sm text-slate-600 group-has-[:checked]:text-blue-700" th:text="${type.typeName}">Tipe User</span>
                                 </div>
+
+                                <div class="absolute inset-0 border-2 border-transparent group-has-[:checked]:border-blue-600 rounded-2xl pointer-events-none transition-colors duration-300"></div>
                             </label>
-                            
-                            <label class="relative flex flex-col p-4 bg-white border border-slate-200 rounded-xl cursor-pointer hover:border-blue-500 hover:bg-blue-50 transition group">
-                                <input type="radio" name="user_type" value="employer" class="absolute opacity-0">
-                                <div class="flex flex-col items-center text-center gap-2">
-                                    <div class="p-2 rounded-full bg-slate-100 text-slate-500 group-hover:bg-blue-600 group-hover:text-white transition">
-                                        <i data-lucide="building-2" class="w-5 h-5"></i>
-                                    </div>
-                                    <span class="font-semibold text-slate-700 group-hover:text-blue-700">Perusahaan</span>
-                                </div>
-                            </label>
+                        </div>
+
+                        <div th:if="${#fields.hasErrors('usersType.id')}" class="mt-4 flex justify-center items-center gap-1 text-red-600">
+                            <i data-lucide="alert-circle" class="w-4 h-4"></i>
+                            <p class="text-xs font-semibold" th:errors="*{usersType.id}"></p>
                         </div>
                     </div>
 
@@ -117,10 +118,10 @@
         lucide.createIcons();
 
         // Script sederhana untuk styling Radio Cards saat dipilih
-        const radioButtons = document.querySelectorAll('input[name="user_type"]');
+        const radioButtons = document.querySelectorAll('input[name="userType"]');
         radioButtons.forEach(radio => {
             radio.addEventListener('change', () => {
-                document.querySelectorAll('input[name="user_type"]').forEach(r => {
+                document.querySelectorAll('input[name="userType"]').forEach(r => {
                     r.parentElement.classList.remove('border-blue-500', 'bg-blue-50', 'ring-2', 'ring-blue-500/20');
                 });
                 if (radio.checked) {
@@ -130,7 +131,7 @@
         });
         
         // Memastikan state awal benar
-        document.querySelector('input[name="user_type"]:checked').parentElement.classList.add('border-blue-500', 'bg-blue-50', 'ring-2', 'ring-blue-500/20');
+        document.querySelector('input[name="userType"]:checked').parentElement.classList.add('border-blue-500', 'bg-blue-50', 'ring-2', 'ring-blue-500/20');
     </script>
 </body>
 </html>

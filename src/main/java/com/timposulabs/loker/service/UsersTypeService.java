@@ -1,7 +1,7 @@
 package com.timposulabs.loker.service;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.timposulabs.loker.dto.UsersTypeDTO;
@@ -17,8 +17,8 @@ public class UsersTypeService {
         this.repository = repository;
     }
     
-    public Page<UsersTypeDTO> getAll(Pageable pageable) {
-        return repository.findAll(pageable).map(this::toDTO);
+    public List<UsersTypeDTO> getAll() {
+        return repository.findAll().stream().map(this::toDTO).toList();
     }
 
     // Helper methods to convert between Entity and DTO

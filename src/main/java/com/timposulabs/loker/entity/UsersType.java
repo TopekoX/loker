@@ -30,11 +30,4 @@ public class UsersType {
 
     @OneToMany(targetEntity = Users.class, mappedBy = "usersType", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Users> users;
-
-    public void addUsers(Users user) {
-        if (user != null) {
-            this.users.add(user);
-            user.setUsersType(this);
-        }
-    }
 }

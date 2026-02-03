@@ -45,7 +45,7 @@ public class Users {
     @Column(nullable = false, name = "is_active")
     private boolean isActive = true;
 
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.DETACH})
+    @ManyToOne
     @JoinColumn(name = "usersTypeId", referencedColumnName = "id")
     private UsersType usersType;
 }
