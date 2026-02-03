@@ -1,12 +1,12 @@
 package com.timposulabs.loker.service;
 
-import org.springframework.boot.webmvc.autoconfigure.WebMvcProperties.Apiversion.Use;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.timposulabs.loker.dto.UsersDTO;
 import com.timposulabs.loker.entity.Users;
+import com.timposulabs.loker.exception.EmailAlreadyExistsException;
 import com.timposulabs.loker.repository.UsersRepository;
 
 @Service
@@ -24,9 +24,13 @@ public class UsersService {
 
     public UsersDTO save(UsersDTO dto) {
         Users user = toEntity(dto);
+        if (repository.existsByEmail(user.getEmail())) {
+            throw new EmailAlreadyExistsException("Email sudah terdaftar: " + user.getEmail());
+        }
+        
         return toDTO(repository.save(user));
     }
-    
+
     // Helper methods to convert between Entity and DTO
     private UsersDTO toDTO(Users entity) {
         return new UsersDTO(

@@ -28,7 +28,7 @@ public class UsersType {
     @Column(nullable = false, unique = true)
     private String typeName;
 
-    @OneToMany(mappedBy = "usersType", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(targetEntity = Users.class, mappedBy = "usersType", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Users> users;
 
     public void addUsers(Users user) {

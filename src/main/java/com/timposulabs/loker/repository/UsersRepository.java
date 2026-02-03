@@ -8,4 +8,5 @@ import com.timposulabs.loker.entity.Users;
 @Repository
 public interface UsersRepository extends JpaRepository<Users, Long> {
 
+    boolean existsByEmail(String email);
 }

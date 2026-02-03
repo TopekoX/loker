@@ -4,8 +4,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 
 import com.timposulabs.loker.dto.UsersDTO;
+import com.timposulabs.loker.exception.EmailAlreadyExistsException;
 import com.timposulabs.loker.service.UsersService;
 import com.timposulabs.loker.service.UsersTypeService;
 
@@ -40,8 +42,21 @@ public class UsersController {
     }
 
     @PostMapping("/register/new")
-    public String newUsers(@Valid @ModelAttribute UsersDTO usersDTO) {
-        usersService.save(usersDTO);
-        return "redirect:/dashboard";
-    }    
+    public String newUsers(@Valid @ModelAttribute("user") UsersDTO usersDTO, BindingResult result,Model model) {
+        
+        if (result.hasErrors()) {
+            return "register";
+        } else {
+            try {
+                usersService.save(usersDTO);
+                return "redirect:/dashboard";
+            } catch (EmailAlreadyExistsException e) {
+                // Daftarkan error langsung ke field 'email' agar terbaca oleh th:errors
+                result.rejectValue("email", "error.user", e.getMessage());
+                // Tambahkan pesan kustom error ke model untuk ditampilkan di view
+                model.addAttribute("customError", e.getMessage() + ", Silakan gunakan email lain atau <a href=\"login.html\" class=\"underline font-bold\">Masuk</a>.");
+                return "register";
+            }
+        }
+    }
 }
