@@ -12,6 +12,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -48,4 +49,10 @@ public class Users {
     @ManyToOne
     @JoinColumn(name = "usersTypeId", referencedColumnName = "id")
     private UsersType usersType;
+
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
+    private JobSeekerProfile jobSeekerProfile;
+
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
+    private RecruiterProfile recruiterProfile;
 }

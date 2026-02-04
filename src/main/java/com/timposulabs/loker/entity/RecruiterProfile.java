@@ -1,5 +1,6 @@
 package com.timposulabs.loker.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -25,7 +26,7 @@ public class RecruiterProfile {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private Users user;
     
@@ -43,4 +44,8 @@ public class RecruiterProfile {
     
     @Column(nullable = true)
     private String profilePictureUrl;
+
+    public RecruiterProfile(Users user) {
+        this.user = user;
+    }
 }

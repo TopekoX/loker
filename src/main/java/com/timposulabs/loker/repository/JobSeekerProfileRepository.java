@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.timposulabs.loker.entity.JobSeekerProfile;
 
 @Repository
-public interface JobSeekerRepository extends JpaRepository<JobSeekerProfile, Long> {
+public interface JobSeekerProfileRepository extends JpaRepository<JobSeekerProfile, Long> {
 
 }

@@ -64,5 +64,9 @@ public class JobSeekerProfile {
         this.employeeType = employeeType;
         this.resume = resume;
         this.profilePictureUrl = profilePictureUrl;
-    }   
+    }
+
+    public JobSeekerProfile(Users user) {
+        this.user = user;
+    }
 }
