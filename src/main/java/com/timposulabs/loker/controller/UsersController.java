@@ -2,6 +2,9 @@ package com.timposulabs.loker.controller;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,6 +15,8 @@ import com.timposulabs.loker.exception.EmailAlreadyExistsException;
 import com.timposulabs.loker.service.UsersService;
 import com.timposulabs.loker.service.UsersTypeService;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,6 +50,16 @@ public class UsersController {
         model.addAttribute("user", new UsersDTO());
         return "login";
     }
+
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request, HttpServletResponse response) {
+        
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null) {
+            new SecurityContextLogoutHandler().logout(request, response, authentication);
+        }
+        return "redirect:/";
+    }   
     
     @PostMapping("/register/new")
     public String newUsers(@Valid @ModelAttribute("user") UsersDTO usersDTO, BindingResult result,Model model) {
@@ -58,11 +73,11 @@ public class UsersController {
                 usersService.save(usersDTO);
                 return "redirect:/dashboard";
             } catch (EmailAlreadyExistsException e) {
-                model.addAttribute("usersTypes", usersTypeservice.getAll()); // SAMA DI SINI
+                model.addAttribute("usersTypes", usersTypeservice.getAll());
                 // Daftarkan error langsung ke field 'email' agar terbaca oleh th:errors
                 result.rejectValue("email", "error.user", e.getMessage());
                 // Tambahkan pesan kustom error ke model untuk ditampilkan di view
-                model.addAttribute("customError", e.getMessage() + ", Silakan gunakan email lain atau <a href=\"login.html\" class=\"underline font-bold\">Masuk</a>.");
+                model.addAttribute("customError", e.getMessage() + ", Silakan gunakan email lain atau <a href=\"/login\" class=\"underline font-bold\">Masuk</a>.");
                 return "register";
             }
         }
