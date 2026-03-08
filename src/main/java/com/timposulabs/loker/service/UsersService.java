@@ -10,6 +10,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.timposulabs.loker.dto.JobSeekerProfileDTO;
+import com.timposulabs.loker.dto.RecruiterProfileDTO;
 import com.timposulabs.loker.dto.UsersDTO;
 import com.timposulabs.loker.entity.JobSeekerProfile;
 import com.timposulabs.loker.entity.RecruiterProfile;
@@ -57,6 +59,13 @@ public class UsersService {
         return toDTO(userSaved);
     }
 
+    public UsersDTO findByEmail(String email) {
+        Users user = userRepository.findByEmail(email).orElseThrow(
+            () -> new UsernameNotFoundException("User not found with email: " + email)
+        );
+        return toDTO(user);
+    }   
+
     public Object getCurrentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
@@ -66,11 +75,13 @@ public class UsersService {
             );
 
             if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("Pelamar"))) {
-                RecruiterProfile recruiterProfile = recruiterProfileRepository.findById(user.getId()).orElse(new RecruiterProfile());
-                return recruiterProfile;
-            } else {
-                JobSeekerProfile jobSeekerProfile = jobSeekerProfileRepository.findById(user.getId()).orElse(new JobSeekerProfile());
+                JobSeekerProfileDTO jobSeekerProfile = 
+                        toJobSeekerProfileDTO(jobSeekerProfileRepository.findById(user.getId()).orElse(new JobSeekerProfile()));
                 return jobSeekerProfile;
+            } else {
+                RecruiterProfileDTO recruiterProfile = 
+                        toRecruiterProfileDTO(recruiterProfileRepository.findById(user.getId()).orElse(new RecruiterProfile()));
+                return recruiterProfile;
             }
         }
         return null;
@@ -93,5 +104,32 @@ public class UsersService {
         entity.setEmail(dto.getEmail());
         entity.setUsersType(dto.getUsersType());
         return entity;
+    }
+
+    private RecruiterProfileDTO toRecruiterProfileDTO(RecruiterProfile entity) {
+        RecruiterProfileDTO dto = new RecruiterProfileDTO();
+        dto.setId(entity.getId());
+        dto.setUser(entity.getUser());
+        dto.setFirstName(entity.getFirstName());
+        dto.setLastName(entity.getLastName());
+        dto.setCity(entity.getCity());
+        dto.setState(entity.getState());
+        dto.setCountry(entity.getCountry());
+        dto.setCompanyName(entity.getCompanyName());
+        dto.setProfilePictureUrl(entity.getProfilePictureUrl());
+        return dto;
+    }
+
+    private JobSeekerProfileDTO toJobSeekerProfileDTO(JobSeekerProfile entity) {
+        JobSeekerProfileDTO dto = new JobSeekerProfileDTO();
+        dto.setId(entity.getId());
+        dto.setUser(entity.getUser());
+        dto.setFirstName(entity.getFirstName());
+        dto.setLastName(entity.getLastName());
+        dto.setCity(entity.getCity());
+        dto.setState(entity.getState());
+        dto.setCountry(entity.getCountry());
+        dto.setProfilePictureUrl(entity.getProfilePictureUrl());
+        return dto;
     }
 }

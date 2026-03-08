@@ -13,6 +13,7 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Table(name = "user_types")
@@ -29,5 +30,6 @@ public class UsersType {
     private String typeName;
 
     @OneToMany(targetEntity = Users.class, mappedBy = "usersType", cascade = CascadeType.ALL, orphanRemoval = true)
+    @ToString.Exclude
     private Set<Users> users;
 }

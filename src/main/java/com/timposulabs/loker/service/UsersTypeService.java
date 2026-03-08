@@ -30,11 +30,11 @@ public class UsersTypeService {
         );
     }
 
-    private UsersType toEntity(UsersTypeDTO dto) {
-        UsersType entity = new UsersType();
-        entity.setId(dto.getId());
-        entity.setTypeName(dto.getTypeName());
-        entity.setUsers(dto.getUsers());
-        return entity;
-    }
+    // private UsersType toEntity(UsersTypeDTO dto) {
+    //     UsersType entity = new UsersType();
+    //     entity.setId(dto.getId());
+    //     entity.setTypeName(dto.getTypeName());
+    //     entity.setUsers(dto.getUsers());
+    //     return entity;
+    // }
 }

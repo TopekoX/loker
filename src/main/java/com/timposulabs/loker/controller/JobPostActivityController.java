@@ -25,7 +25,8 @@ public class JobPostActivityController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
             String username = authentication.getName();
-            System.out.println("username: " + username);
+            System.out.println("Authenticated user: " + username);
+            model.addAttribute("username", username);
         } 
         model.addAttribute("user", user);
         return "dashboard";

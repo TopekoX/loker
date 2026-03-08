@@ -37,7 +37,7 @@
                 <i data-lucide="bookmark" class="w-5 h-5"></i> Tersimpan
             </a>
             <div class="pt-4 pb-2 px-4 text-xs font-bold text-slate-400 uppercase tracking-widest">Akun</div>
-            <a sec:authorize="hasAuthority('Pelamar')" th:href="@{/profile}" class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-50 hover:text-blue-600 rounded-xl transition">
+            <a sec:authorize="hasAuthority('Pelamar')" th:href="@{/reqruiter-profile}" class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-50 hover:text-blue-600 rounded-xl transition">
                 <i data-lucide="user" class="w-5 h-5"></i> Profil Saya
             </a>
             <a sec:authorize="hasAuthority('Pelamar')" th:href="@{/settings}" class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-50 hover:text-blue-600 rounded-xl transition">
@@ -63,7 +63,8 @@
                 </button>
                 <div class="flex items-center gap-3 pl-4 border-l border-slate-200">
                     <div class="text-right hidden sm:block">
-                        <p class="text-sm font-bold text-slate-800">Budi Santoso</p>
+                        <p class="text-sm font-bold text-slate-800" th:if="${user == null || user.firstName == null || user.lastName == null}" th:text="${username}">Budi Santoso</p>
+                        <p class="text-sm font-bold text-slate-800" th:unless="${user == null || user.firstName == null || user.lastName == null}" th:text="${username}">Budi Santoso</p>
                         <p class="text-xs text-slate-500">UI/UX Designer</p>
                     </div>
                     <div class="w-10 h-10 bg-blue-100 rounded-full border border-blue-200 flex items-center justify-center text-blue-600 font-bold">

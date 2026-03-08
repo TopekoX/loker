@@ -17,6 +17,7 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Table(name = "users")
@@ -48,11 +49,14 @@ public class Users {
 
     @ManyToOne
     @JoinColumn(name = "usersTypeId", referencedColumnName = "id")
+    @ToString.Exclude
     private UsersType usersType;
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
+    @ToString.Exclude
     private JobSeekerProfile jobSeekerProfile;
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
+    @ToString.Exclude
     private RecruiterProfile recruiterProfile;
 }
