@@ -91,6 +91,18 @@ public class UsersService {
         return null;
     }
 
+    public UsersDTO getCurrentUserDTO() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+            String username = authentication.getName();
+            Users user = userRepository.findByEmail(username).orElseThrow(
+                () -> new UsernameNotFoundException("User not found with email: " + username)
+            );
+            return toDTO(user);
+        }
+        return null;
+    }
+
     // Helper methods to convert between Entity and DTO
     private UsersDTO toDTO(Users entity) {
         return new UsersDTO(
@@ -101,7 +113,7 @@ public class UsersService {
         );
     }
 
-    private Users toEntity(UsersDTO dto) {
+    public Users toEntity(UsersDTO dto) {
         Users entity = new Users();
         entity.setId(dto.getId());
         entity.setPassword(dto.getPassword());

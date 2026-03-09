@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Lowongan Baru - Loker Kita</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
+    <style>
+        /* Styling agar Summernote selaras dengan desain Tailwind kita */
+        .note-editor {
+            border-radius: 0.75rem !important;
+            border: 1px solid #e2e8f0 !important;
+            background-color: #f8fafc !important;
+            overflow: hidden;
+        }
+        .note-toolbar {
+            background-color: #f1f5f9 !important;
+            border-bottom: 1px solid #e2e8f0 !important;
+        }
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 min-h-screen pb-12">
+
+    <nav class="p-6 bg-white border-b border-slate-200 mb-8">
+        <div class="container mx-auto flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <div class="bg-blue-600 p-1.5 rounded-lg">
+                    <i data-lucide="briefcase" class="text-white w-5 h-5"></i>
+                </div>
+                <span class="text-xl font-bold text-blue-600 tracking-tight">Loker Kita</span>
+            </div>
+            <div class="flex items-center gap-3">
+                <span class="text-sm text-slate-500 font-medium hidden md:block">Posting Lowongan</span>
+                <div class="w-10 h-10 rounded-full border border-blue-200 overflow-hidden flex items-center justify-center bg-slate-100">
+                    <img th:if="${user.profilePictureUrl != null}" 
+                            th:src="@{${user.photosImagePath}}" 
+                            alt="Profile" 
+                            class="w-full h-full object-cover">
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto">
+            <form th:action="@{/dashboard/addNew}" th:object="${jobPostActivity}" method="post" class="space-y-6">
+                
+                <div class="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-200">
+                    <div class="flex items-center gap-3 mb-8">
+                        <div class="p-2 bg-blue-50 text-blue-600 rounded-lg">
+                            <i data-lucide="file-plus" class="w-5 h-5"></i>
+                        </div>
+                        <h2 class="text-xl font-bold text-slate-800">Detail Pekerjaan</h2>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="md:col-span-3 space-y-2">
+                            <label class="text-sm font-bold text-slate-700 ml-1">Nama Jabatan / Judul</label>
+                            <input type="text" th:field="*{jobTitle}" placeholder="Contoh: Senior Java Developer" 
+                                   class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition">
+                        </div>
+
+                        <div class="space-y-2">
+                            <label class="text-sm font-bold text-slate-700 ml-1">Tipe Kontrak</label>
+                            <select th:field="*{jobType}" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition appearance-none cursor-pointer">
+                                <option value="">Pilih Tipe</option>
+                                <option value="Full-time">Full-time</option>
+                                <option value="Part-time">Part-time</option>
+                                <option value="Freelance">Freelance</option>
+                                <option value="Internship">Internship</option>
+                            </select>
+                        </div>
+
+                        <div class="space-y-2">
+                            <label class="text-sm font-bold text-slate-700 ml-1">Sistem Kerja</label>
+                            <select th:field="*{remote}" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition appearance-none cursor-pointer">
+                                <option value="">Pilih Sistem</option>
+                                <option value="Remote-Only">Remote-Only</option>
+                                <option value="Office-Only">Office-Only</option>
+                                <option value="Partial-Remote">Partial-Remote</option>
+                            </select>
+                        </div>
+
+                        <div class="space-y-2">
+                            <label class="text-sm font-bold text-slate-700 ml-1">Kisaran Gaji</label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-slate-400 font-medium">Rp</span>
+                                <input type="text" th:field="*{salary}" placeholder="8.000.000 - 12.000.000" 
+                                       class="w-full pl-12 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition">
+                            </div>
+                        </div>
+
+                        <div class="md:col-span-3 space-y-2">
+                            <label class="text-sm font-bold text-slate-700 ml-1">Deskripsi Pekerjaan</label>
+                            <textarea id="summernote" th:field="*{descriptionOfJob}" 
+                                    placeholder="Tuliskan tanggung jawab, persyaratan, dan benefit..." 
+                                    maxlength="5000"
+                                    rows="6"
+                                    class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition resize-none"></textarea>
+                            <p class="text-xs text-slate-500 mt-1">Maksimal 5000 karakter</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 md:p-10 rounded-[2rem] shadow-sm border border-slate-200">
+                    <div class="flex items-center gap-3 mb-8">
+                        <div class="p-2 bg-orange-50 text-orange-600 rounded-lg">
+                            <i data-lucide="map-pin" class="w-5 h-5"></i>
+                        </div>
+                        <h2 class="text-xl font-bold text-slate-800">Lokasi Penempatan</h2>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                        <div class="space-y-2">
+                            <label class="text-sm font-bold text-slate-700 ml-1">Kota</label>
+                            <input type="text" th:field="*{locationId.city}" placeholder="Palu" 
+                                   class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-sm font-bold text-slate-700 ml-1">Provinsi</label>
+                            <input type="text" th:field="*{locationId.state}" placeholder="Sulawesi Tengah" 
+                                   class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-sm font-bold text-slate-700 ml-1">Negara</label>
+                            <input type="text" th:field="*{locationId.country}" placeholder="Indonesia" 
+                                   class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition">
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="p-2 bg-green-50 text-green-600 rounded-lg">
+                            <i data-lucide="building" class="w-5 h-5"></i>
+                        </div>
+                        <h2 class="text-xl font-bold text-slate-800">Identitas Perusahaan</h2>
+                    </div>
+                    
+                    <div class="space-y-2">
+                        <label class="text-sm font-bold text-slate-700 ml-1">Nama Perusahaan</label>
+                        <input type="text" th:field="*{jobCompanyId.name}" placeholder="Nama Perusahaan yang muncul di lowongan" 
+                               class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition font-medium">
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-center pt-4">
+                    <button type="submit" class="w-full md:w-auto px-12 py-4 bg-blue-600 text-white rounded-2xl font-bold text-lg hover:bg-blue-700 transition shadow-lg shadow-blue-100 flex items-center justify-center gap-2">
+                        Publikasikan Sekarang <i data-lucide="send" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        lucide.createIcons();
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#summernote').summernote({
+                placeholder: 'Tuliskan detail pekerjaan di sini...',
+                tabsize: 2,
+                height: 300,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', ['link']],
+                    ['view', ['fullscreen', 'codeview', 'help']]
+                ],
+                // Custom styling untuk editor area
+                callbacks: {
+                    onInit: function() {
+                        $('.note-editable').css('background-color', '#fff');
+                    }
+                }
+            });
+            lucide.createIcons();
+        });
+    </script>
+</body>
+</html>
