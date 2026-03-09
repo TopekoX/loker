@@ -79,8 +79,12 @@ public class UsersService {
                         toJobSeekerProfileDTO(jobSeekerProfileRepository.findById(user.getId()).orElse(new JobSeekerProfile()));
                 return jobSeekerProfile;
             } else {
+                // previously we looked up by profile PK – incorrect if the generated
+                // profile id differs from the user id.  Use the foreign key column.
                 RecruiterProfileDTO recruiterProfile = 
-                        toRecruiterProfileDTO(recruiterProfileRepository.findById(user.getId()).orElse(new RecruiterProfile()));
+                        toRecruiterProfileDTO(recruiterProfileRepository
+                                .findByUserId(user.getId())
+                                .orElse(new RecruiterProfile()));
                 return recruiterProfile;
             }
         }

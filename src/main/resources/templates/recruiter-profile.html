@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setup Profil Perusahaan - Loker Kita</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>body { font-family: 'Inter', sans-serif; }</style>
+</head>
+<body class="bg-slate-50 text-slate-900 min-h-screen pb-12">
+
+    <nav class="p-6 bg-white border-b border-slate-200 mb-8">
+        <div class="container mx-auto flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <div class="bg-blue-600 p-1.5 rounded-lg">
+                    <i data-lucide="building-2" class="text-white w-5 h-5"></i>
+                </div>
+                <span class="text-xl font-bold text-blue-600 tracking-tight">Loker Kita</span>
+            </div>
+            <span class="text-sm text-slate-500 font-medium hidden md:block">Profil Perusahaan</span>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-6">
+        <div class="max-w-3xl mx-auto">
+            <form th:action="@{/recruiter-profile/addNew}" th:object="${profile}" method="post" enctype="multipart/form-data" class="space-y-6">
+                
+                <div class="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-200 flex flex-col items-center">
+                    <h2 class="text-lg font-bold mb-4 text-slate-700">Logo Perusahaan</h2>
+                    <div class="relative group">
+                        <div class="w-32 h-32 rounded-2xl bg-slate-100 border-2 border-dashed border-slate-300 overflow-hidden flex items-center justify-center relative">
+                            <img id="preview" src="#" alt="Preview" class="hidden w-full h-full object-cover">
+                            <i id="placeholder-icon" data-lucide="upload" class="w-8 h-8 text-slate-300"></i>
+                        </div>
+                        <label for="profilePhoto" class="absolute -bottom-2 -right-2 bg-blue-600 p-2.5 rounded-lg text-white cursor-pointer hover:bg-blue-700 shadow-lg border-2 border-white transition-all">
+                            <i data-lucide="camera" class="w-4 h-4"></i>
+                            <!-- file input name matches controller param -->
+                            <input type="file" id="profilePhoto" name="image" class="hidden" accept="image/png, image/jpeg" onchange="previewImage(this)">
+                            <!-- keep existing URL for edits if any -->
+                            <input type="hidden" th:field="*{profilePictureUrl}" />
+                        </label>
+                    </div>
+                    <p class="mt-4 text-[10px] text-slate-400 uppercase tracking-widest font-bold">Format: JPG, PNG (Maks 2MB)</p>
+                </div>
+
+                <div class="bg-white p-8 md:p-10 rounded-[2rem] shadow-sm border border-slate-200">
+                    <div class="flex items-center gap-3 mb-8">
+                        <div class="p-2 bg-blue-50 text-blue-600 rounded-lg">
+                            <i data-lucide="file-text" class="w-5 h-5"></i>
+                        </div>
+                        <h2 class="text-xl font-bold">Informasi Akun</h2>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="md:col-span-2 space-y-2">
+                            <label class="text-sm font-bold text-slate-700">Nama Resmi Perusahaan</label>
+                            <input type="text" th:field="*{companyName}" name="companyName" placeholder="Contoh: PT. Global Solusi" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition font-medium">
+                        </div>
+
+                        <div class="space-y-2">
+                            <label class="text-sm font-bold text-slate-700">Nama Depan (Admin)</label>
+                            <input type="text" th:field="*{firstName}" name="firstName" placeholder="Nama Depan" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition text-sm">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-sm font-bold text-slate-700">Nama Belakang (Admin)</label>
+                            <input type="text" th:field="*{lastName}" name="lastName" placeholder="Nama Belakang" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition text-sm">
+                        </div>
+
+                        <div class="space-y-2">
+                            <label class="text-sm font-bold text-slate-700">Kota</label>
+                            <input type="text" th:field="*{city}" name="city" placeholder="Jakarta Selatan" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition text-sm">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-sm font-bold text-slate-700">Provinsi</label>
+                            <input type="text" th:field="*{state}" name="state" placeholder="DKI Jakarta" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition text-sm">
+                        </div>
+                        
+                        <div class="md:col-span-2 space-y-2">
+                            <label class="text-sm font-bold text-slate-700">Negara</label>
+                            <input type="text" th:field="*{country}" name="country" placeholder="Contoh: Indonesia" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition text-sm">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-4">
+                    <button type="submit" class="w-full bg-blue-600 text-white py-4 rounded-2xl font-bold text-lg hover:bg-blue-700 transition shadow-lg shadow-blue-100 flex items-center justify-center gap-2">
+                        Simpan Profil Perusahaan <i data-lucide="save" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        lucide.createIcons();
+
+        function previewImage(input) {
+            const preview = document.getElementById('preview');
+            const icon = document.getElementById('placeholder-icon');
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    preview.classList.remove('hidden');
+                    icon.classList.add('hidden');
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+</body>
+</html>

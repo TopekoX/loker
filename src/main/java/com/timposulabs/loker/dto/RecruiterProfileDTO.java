@@ -29,4 +29,9 @@ public class RecruiterProfileDTO {
     private String companyName;
     
     private String profilePictureUrl;
+
+    public String getPhotosImagePath() {
+        if (profilePictureUrl == null || id == null) return null;
+        return "/photos/recruiter/" + id + "/" + profilePictureUrl;
+    }
 }

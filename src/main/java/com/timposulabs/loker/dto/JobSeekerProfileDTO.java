@@ -39,4 +39,9 @@ public class JobSeekerProfileDTO {
     private String profilePictureUrl;    
 
     private Set<Skills> skills;
+
+    public String getPhotosImagePath() {
+        if (profilePictureUrl == null || id == null) return null;
+        return "/photos/job-seeker/" + id + "/" + profilePictureUrl;
+    }
 }

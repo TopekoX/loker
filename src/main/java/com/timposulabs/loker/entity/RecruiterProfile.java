@@ -9,6 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -43,9 +44,15 @@ public class RecruiterProfile {
     private String companyName;
     
     @Column(nullable = true)
-    private String profilePictureUrl;
+    private String profilePictureUrl = "/photos/recruiter/" + id ;
 
     public RecruiterProfile(Users user) {
         this.user = user;
+    }
+
+    @Transient
+    public String getPhotosImagePath() {
+        if (profilePictureUrl == null) return null;
+        return "/photos/recruiter/" + id + "/" + profilePictureUrl;
     }
 }
